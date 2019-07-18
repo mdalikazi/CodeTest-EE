@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <RelativeLayout
+            android:id="@+id/mainFragmentLayoutNumber"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+        <TextView
+                android:id="@+id/mainFragmentLabelTo"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:paddingStart="@dimen/large_padding"
+                android:paddingEnd="40dp"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:text="To"/>
+
+        <EditText
+                android:id="@+id/mainFragmentNumberEditText"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_toEndOf="@+id/mainFragmentLabelTo"
+                android:background="@color/colorTransparent"
+                android:gravity="center_vertical"
+                android:inputType="phone"
+                tools:text="0401553443"/>
+
+    </RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/mainFragmentRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:clipToPadding="true"
+            android:orientation="vertical"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_message"/>
+
+    <LinearLayout
+            android:id="@+id/mainFragmentLayoutMessage"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal">
+
+        <EditText
+                android:id="@+id/mainFragmentEditTextMessage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:padding="@dimen/regular_padding"
+                android:background="@color/colorTransparent"
+                android:inputType="text"
+                android:hint="Please type your message"/>
+
+        <Button
+                android:id="@+id/mainFragmentButtonSend"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@+id/mainFragmentEditTextMessage"
+                android:text="Send"/>
+
+
+    </LinearLayout>
+
+</LinearLayout>
