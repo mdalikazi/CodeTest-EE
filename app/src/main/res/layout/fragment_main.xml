@@ -41,6 +41,7 @@
             android:layout_weight="1"
             android:clipToPadding="true"
             android:orientation="vertical"
+            app:reverseLayout="true"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/item_message"/>
 

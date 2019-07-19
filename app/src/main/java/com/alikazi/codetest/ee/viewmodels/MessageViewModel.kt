@@ -9,11 +9,11 @@ class MessageViewModel(private val appRepository: AppRepository) : ViewModel() {
 
     private var messageRequestLiveData = MutableLiveData<RequestResponseModels.MessageRequest>()
     private val messageResponseLiveData = Transformations.map(messageRequestLiveData) {
-        RequestResponseModels.MessageResponse() // TODO
+        appRepository.sendMessageToServer(it)
     }
 
-    val response = Transformations.switchMap(messageResponseLiveData) {
-        it._text
+    val messageReceived = Transformations.switchMap(messageResponseLiveData) {
+        it._messageReceived
     }
 
     val networkErrors = Transformations.switchMap(messageResponseLiveData) {
