@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.alikazi.codetest.ee.R
+import com.alikazi.codetest.ee.utils.Constants
 import com.alikazi.codetest.ee.utils.InactivityHelper
 import com.alikazi.codetest.ee.utils.Injector
 import com.alikazi.codetest.ee.viewmodels.MessageViewModel
@@ -68,9 +69,10 @@ class MainFragment : Fragment() {
             mainFragmentNumberEditText.requestFocus()
             mainFragmentNumberEditText.error = getString(R.string.validation_number_error_empty)
             return false
-        } else if (mainFragmentNumberEditText.length() < 10) {
+        } else if (mainFragmentNumberEditText.length() < Constants.PHONE_NUMER_MINIMUM_LENGTH) {
             mainFragmentNumberEditText.requestFocus()
             mainFragmentNumberEditText.error = getString(R.string.validation_number_error_less_than_10_chars)
+            return false
         } else if (mainFragmentEditTextMessage.text.isBlank() &&
             mainFragmentEditTextMessage.text.isEmpty()) {
             return false

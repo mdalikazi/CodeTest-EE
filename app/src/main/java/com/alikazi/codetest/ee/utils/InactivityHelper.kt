@@ -19,7 +19,7 @@ class InactivityHelper(private val context: Context?) : Runnable {
     }
 
     fun startFourSecondsCountdown() {
-        handler.postDelayed(this, 4000)
+        handler.postDelayed(this, Constants.INACTIVITY_COUNTDOWN_TIMER_DELAY)
     }
 
     fun stopCountdown() {
