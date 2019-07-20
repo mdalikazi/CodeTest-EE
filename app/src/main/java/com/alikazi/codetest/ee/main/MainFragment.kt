@@ -28,6 +28,7 @@ class MainFragment : Fragment() {
         messageViewModel?.messageReceived?.observe(this, Observer {
             if (it.text.isNotEmpty() && it.text.isNotBlank()) {
                 messagesAdapter.addReceievedMessage(it)
+                mainFragmentRecyclerView.smoothScrollToPosition(messagesAdapter.itemCount)
             }
         })
         messagesAdapter = MessagesAdapter(activity)
@@ -49,9 +50,11 @@ class MainFragment : Fragment() {
                     messageViewModel?.sendMessageToServer(messageRequest)
                     messagesAdapter.addSentMessage(messageSent)
                     mainFragmentEditTextMessage.text.clear()
+                    mainFragmentRecyclerView.smoothScrollToPosition(messagesAdapter.itemCount)
                 }
             }
         }
 
     }
+
 }

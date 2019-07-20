@@ -5,17 +5,18 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/regular_padding"
-        android:clickable="true"
-        android:focusable="true"
-        android:background="?android:selectableItemBackground">
+        android:layout_marginBottom="@dimen/regular_padding">
 
     <androidx.cardview.widget.CardView
             android:id="@+id/messageContainer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:contentPadding="@dimen/small_padding"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?android:selectableItemBackground"
             app:cardBackgroundColor="@color/colorMessageBackground"
+            app:cardPreventCornerOverlap="true"
+            app:contentPadding="@dimen/small_padding"
             app:cardCornerRadius="@dimen/regular_padding">
 
         <LinearLayout

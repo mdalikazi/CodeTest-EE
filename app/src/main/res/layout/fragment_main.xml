@@ -45,11 +45,11 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:layout_marginStart="@dimen/regular_padding"
-            android:layout_marginEnd="@dimen/regular_padding"
-            android:layout_marginTop="@dimen/regular_padding"
+            android:paddingStart="@dimen/regular_padding"
+            android:paddingEnd="@dimen/regular_padding"
             android:clipToPadding="true"
             android:orientation="vertical"
+            android:background="@color/colorLightGray"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/item_message"/>
 
@@ -67,7 +67,7 @@
                 android:padding="@dimen/regular_padding"
                 android:background="@color/colorTransparent"
                 android:inputType="textCapSentences"
-                android:hint="Please type your message"/>
+                android:hint="Type your message"/>
 
         <ImageButton
                 android:id="@+id/mainFragmentButtonSend"
