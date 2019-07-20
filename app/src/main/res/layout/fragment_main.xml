@@ -18,7 +18,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:paddingStart="@dimen/large_padding"
-                android:paddingEnd="40dp"
+                android:paddingEnd="30dp"
                 android:gravity="center"
                 android:textStyle="bold"
                 android:text="To"/>
@@ -28,6 +28,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_toEndOf="@+id/mainFragmentLabelTo"
+                android:paddingStart="@dimen/large_padding"
+                android:paddingEnd="@dimen/large_padding"
                 android:background="@color/colorTransparent"
                 android:gravity="center_vertical"
                 android:inputType="phone"

@@ -47,8 +47,7 @@ class MainFragment : Fragment() {
         if (savedInstanceState == null) {
             mainFragmentRecyclerView.adapter = messagesAdapter
             mainFragmentButtonSend.setOnClickListener {
-                if (mainFragmentEditTextMessage.text.isNotEmpty() &&
-                        mainFragmentEditTextMessage.text.isNotBlank()) {
+                if (validateTextFields()) {
                     val trimmedText = mainFragmentEditTextMessage.text.toString().trim()
                     val messageSent = MessageSent(trimmedText)
                     val messageRequest = RequestResponseModels.MessageRequest(messageSent)
@@ -59,7 +58,20 @@ class MainFragment : Fragment() {
                 }
             }
         }
+    }
 
+    private fun validateTextFields(): Boolean {
+        if (mainFragmentNumberEditText.text.isBlank() &&
+                mainFragmentNumberEditText.text.isEmpty()) {
+            mainFragmentNumberEditText.requestFocus()
+            mainFragmentNumberEditText.error = "This field is required!"
+            return false
+        } else if (mainFragmentEditTextMessage.text.isBlank() &&
+            mainFragmentEditTextMessage.text.isEmpty()) {
+            return false
+        }
+        mainFragmentNumberEditText.error = null
+        return true
     }
 
 }
