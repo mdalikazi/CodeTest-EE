@@ -4,14 +4,13 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.alikazi.codetest.ee.R
 import com.alikazi.codetest.ee.utils.EEDateUtils
 
-class MessagesAdapter(private val context: Context?) : RecyclerView.Adapter<MessagesAdapter.MessageItemViewHolder>(){
+class MessagesAdapter(context: Context?) : RecyclerView.Adapter<MessagesAdapter.MessageItemViewHolder>(){
 
     companion object {
         const val VIEW_TYPE_SENT = 0
@@ -42,8 +41,6 @@ class MessagesAdapter(private val context: Context?) : RecyclerView.Adapter<Mess
                 val sentMessage = messagesList[position] as MessageSent
                 holder.messageText.text = sentMessage.text
                 holder.messageTimestamp.text = EEDateUtils.formatDateToAmPm(sentMessage.timestamp)
-                alignMessageToRight(holder.messageContainer)
-
             }
             VIEW_TYPE_RECEIVED -> {
                 val receivedMessage = messagesList[position] as MessageReceived
@@ -51,12 +48,6 @@ class MessagesAdapter(private val context: Context?) : RecyclerView.Adapter<Mess
                 holder.messageTimestamp.text = EEDateUtils.formatDateToAmPm(receivedMessage.timestamp)
             }
         }
-    }
-
-    private fun alignMessageToRight(target: CardView) {
-        val layoutParams = RelativeLayout.LayoutParams(target.layoutParams.width, target.layoutParams.height)
-        layoutParams.addRule(RelativeLayout.ALIGN_PARENT_END)
-        target.layoutParams = layoutParams
     }
 
     override fun getItemCount(): Int = messagesList.size

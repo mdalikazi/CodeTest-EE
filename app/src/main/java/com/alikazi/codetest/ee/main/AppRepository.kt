@@ -10,8 +10,8 @@ class AppRepository {
 
     fun sendMessageToServer(request: RequestResponseModels.MessageRequest): RequestResponseModels.MessageResponse {
         Log.d(Constants.LOG_TAG, "message sent to server: " + request.messageSent.text)
-        var response = RequestResponseModels.MessageResponse()
-        var received = MessageReceived(generateRandomString())
+        val response = RequestResponseModels.MessageResponse()
+        val received = MessageReceived(generateRandomString())
         Handler().postDelayed( {
             response._messageReceived.postValue(received)
 //            response._networkErrors.postValue("Some exception")
