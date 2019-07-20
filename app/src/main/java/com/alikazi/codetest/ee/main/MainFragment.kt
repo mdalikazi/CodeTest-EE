@@ -11,6 +11,7 @@ import com.alikazi.codetest.ee.R
 import com.alikazi.codetest.ee.utils.Injector
 import com.alikazi.codetest.ee.viewmodels.MessageViewModel
 import com.alikazi.codetest.ee.viewmodels.RequestResponseModels
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_main.*
 
 class MainFragment : Fragment() {
@@ -30,6 +31,10 @@ class MainFragment : Fragment() {
                 messagesAdapter.addReceievedMessage(it)
                 mainFragmentRecyclerView.smoothScrollToPosition(messagesAdapter.itemCount)
             }
+        })
+
+        messageViewModel?.networkErrors?.observe(this, Observer {
+            Snackbar.make(mainFragmentContainer, R.string.generic_network_error, Snackbar.LENGTH_LONG).show()
         })
         messagesAdapter = MessagesAdapter(activity)
     }

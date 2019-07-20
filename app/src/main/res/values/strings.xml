@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">CodeTest - EE</string>
+    <string name="generic_network_error">There was a network error!</string>
 </resources>

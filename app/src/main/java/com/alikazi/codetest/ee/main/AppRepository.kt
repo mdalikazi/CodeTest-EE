@@ -13,6 +13,7 @@ class AppRepository {
         var received = MessageReceived("Standard response")
         Handler().postDelayed( {
             response._messageReceived.postValue(received)
+//            response._networkErrors.postValue("Some exception")
         }, 1000)
         return response
     }
