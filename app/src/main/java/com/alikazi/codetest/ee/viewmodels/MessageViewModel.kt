@@ -1,22 +1,27 @@
 package com.alikazi.codetest.ee.viewmodels
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
+import com.alikazi.codetest.ee.main.AppRepository
+import com.alikazi.codetest.ee.main.MessageReceived
 
-class MessageViewModel(private val appRepository) : ViewModel() {
+class MessageViewModel(private val appRepository: AppRepository) : ViewModel() {
 
     private var messageRequestLiveData = MutableLiveData<RequestResponseModels.MessageRequest>()
     private val messageResponseLiveData = Transformations.map(messageRequestLiveData) {
-        RequestResponseModels.MessageResponse() // TODO
+        appRepository.sendMessageToServer(it)
     }
 
-    val response = Transformations.switchMap(messageResponseLiveData) {
-        it._text
+    val messageReceived: LiveData<MessageReceived> =
+        Transformations.switchMap(messageResponseLiveData) {
+            it._messageReceived
     }
 
-    val networkErrors = Transformations.switchMap(messageResponseLiveData) {
-        it._networkErrors
+    val networkErrors: LiveData<String> =
+        Transformations.switchMap(messageResponseLiveData) {
+            it._networkErrors
     }
 
     fun sendMessageToServer(messageRequest: RequestResponseModels.MessageRequest) {

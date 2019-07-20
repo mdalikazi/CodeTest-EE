@@ -1,45 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/regular_padding"
-        android:clickable="true"
-        android:focusable="true"
-        android:background="?android:selectableItemBackground">
+        android:layout_marginBottom="@dimen/regular_padding">
 
     <androidx.cardview.widget.CardView
-            android:layout_width="@dimen/message_max_width"
+            android:id="@+id/messageContainer"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:contentPadding="@dimen/small_padding"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?android:selectableItemBackground"
             app:cardBackgroundColor="@color/colorMessageBackground"
-            app:cardCornerRadius="4dp">
+            app:cardPreventCornerOverlap="true"
+            app:contentPadding="@dimen/small_padding"
+            app:cardCornerRadius="@dimen/regular_padding">
 
-        <RelativeLayout
-                android:id="@+id/messageContainer"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="100dp"
+                android:orientation="vertical">
 
             <TextView
                     android:id="@+id/messageText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/small_padding"
-                    tools:text="This is a message. Lorem ipsum dalat mi."/>
+                    android:paddingStart="@dimen/small_padding"
+                    android:paddingTop="@dimen/small_padding"
+                    android:paddingEnd="@dimen/small_padding"
+                    tools:text="Hi"/>
 
             <TextView
                     android:id="@+id/messageTimestamp"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/messageText"
-                    android:layout_alignParentEnd="true"
+                    android:gravity="end"
+                    android:maxLines="1"
                     android:textColor="?android:textColorSecondary"
                     tools:text="3:53pm"/>
 
-        </RelativeLayout>
+        </LinearLayout>
 
     </androidx.cardview.widget.CardView>
 

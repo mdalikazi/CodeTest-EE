@@ -9,7 +9,10 @@
     <color name="colorTransparent">#00000000</color>
     <color name="colorWindowBackground">#E2E2E2</color>
     <color name="colorBlack">#000000</color>
-    <color name="colorMessageBackground">#E0F2F1</color>
+    <color name="colorMessageBackground">#E3F2FD</color>
+    <color name="colorChipBackground">#0D47A1</color>
+    <color name="colorLightGray">#F0F0F0</color>
+    <color name="colorDarkGray">#A0A0A0</color>
 
 </resources>
 

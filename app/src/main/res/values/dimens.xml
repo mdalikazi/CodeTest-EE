@@ -4,7 +4,5 @@
     <dimen name="small_padding">4dp</dimen>
     <dimen name="regular_padding">6dp</dimen>
     <dimen name="large_padding">10dp</dimen>
-    <dimen name="number_label_to_padding">40dp</dimen>
-    <dimen name="message_max_width">300dp</dimen>
 
 </resources>

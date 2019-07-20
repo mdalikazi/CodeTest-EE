@@ -1,50 +1,65 @@
 package com.alikazi.codetest.ee.main
 
 import android.content.Context
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.alikazi.codetest.ee.R
+import com.alikazi.codetest.ee.utils.EEDateUtils
 
-class MessagesAdapter(private val context: Context?) :
-    ListAdapter<Message, MessagesAdapter.MessageItemViewHolder>(ITEM_COMPARATOR) {
+class MessagesAdapter(context: Context?) : RecyclerView.Adapter<MessagesAdapter.MessageItemViewHolder>(){
 
     companion object {
         const val VIEW_TYPE_SENT = 0
         const val VIEW_TYPE_RECEIVED = 1
+    }
 
-        private val ITEM_COMPARATOR = object : DiffUtil.ItemCallback<Message>() {
-            override fun areItemsTheSame(oldItem: Message, newItem: Message): Boolean {
-                return oldItem.hashCode() == newItem.hashCode()
+    private var messagesList = ArrayList<Any>()
+    private var inflater = LayoutInflater.from(context)
+
+    fun addSentMessage(messageSent: MessageSent) {
+        messagesList.add(messageSent)
+        notifyItemInserted(messagesList.size)
+    }
+
+    fun addReceievedMessage(messageReceived: MessageReceived) {
+        messagesList.add(messageReceived)
+        notifyItemInserted(messagesList.size)
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MessageItemViewHolder {
+        val view = inflater.inflate(R.layout.item_message, parent, false)
+        return MessageItemViewHolder(view)
+    }
+
+    override fun onBindViewHolder(holder: MessageItemViewHolder, position: Int) {
+        when (holder.itemViewType) {
+            VIEW_TYPE_SENT -> {
+                val sentMessage = messagesList[position] as MessageSent
+                holder.messageText.text = sentMessage.text
+                holder.messageTimestamp.text = EEDateUtils.formatDateToAmPm(sentMessage.timestamp)
             }
-
-            override fun areContentsTheSame(oldItem: Message, newItem: Message): Boolean {
-                return oldItem.id == newItem.id
+            VIEW_TYPE_RECEIVED -> {
+                val receivedMessage = messagesList[position] as MessageReceived
+                holder.messageText.text = receivedMessage.text
+                holder.messageTimestamp.text = EEDateUtils.formatDateToAmPm(receivedMessage.timestamp)
             }
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MessageItemViewHolder {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun getItemCount(): Int = messagesList.size
 
-    override fun onBindViewHolder(holder: MessageItemViewHolder, position: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun getItemCount(): Int {
-        return super.getItemCount()
-    }
-
-    override fun getItemViewType(position: Int): Int {
-        return super.getItemViewType(position)
+    override fun getItemViewType(position: Int) = when(messagesList[position]) {
+        is MessageSent -> VIEW_TYPE_SENT
+        is MessageReceived -> VIEW_TYPE_RECEIVED
+        else -> super.getItemViewType(position)
     }
 
     class MessageItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val messageContainer: ViewGroup = view.findViewById(R.id.messageContainer)
+        val messageContainer: CardView = view.findViewById(R.id.messageContainer)
         val messageText: TextView = view.findViewById(R.id.messageText)
         val messageTimestamp: TextView = view.findViewById(R.id.messageTimestamp)
     }

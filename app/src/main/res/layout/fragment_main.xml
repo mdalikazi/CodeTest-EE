@@ -3,6 +3,7 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/mainFragmentContainer"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -17,20 +18,28 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:paddingStart="@dimen/large_padding"
-                android:paddingEnd="40dp"
+                android:paddingEnd="30dp"
                 android:gravity="center"
                 android:textStyle="bold"
-                android:text="To"/>
+                android:text="@string/main_fragment_to"/>
 
         <EditText
                 android:id="@+id/mainFragmentNumberEditText"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_toEndOf="@+id/mainFragmentLabelTo"
+                android:paddingStart="@dimen/large_padding"
+                android:paddingEnd="@dimen/large_padding"
                 android:background="@color/colorTransparent"
                 android:gravity="center_vertical"
                 android:inputType="phone"
-                tools:text="0401553443"/>
+                android:hint="@string/main_fragment_hint_phone_number"/>
+
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_alignParentBottom="true"
+                android:background="@color/colorLightGray"/>
 
     </RelativeLayout>
 
@@ -39,8 +48,11 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
+            android:paddingStart="@dimen/regular_padding"
+            android:paddingEnd="@dimen/regular_padding"
             android:clipToPadding="true"
             android:orientation="vertical"
+            android:background="@color/colorLightGray"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/item_message"/>
 
@@ -52,21 +64,27 @@
 
         <EditText
                 android:id="@+id/mainFragmentEditTextMessage"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:padding="@dimen/regular_padding"
                 android:background="@color/colorTransparent"
-                android:inputType="text"
-                android:hint="Please type your message"/>
+                android:inputType="textCapSentences"
+                android:hint="@string/main_fragment_hint_type_message"/>
 
-        <Button
+        <ImageButton
                 android:id="@+id/mainFragmentButtonSend"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toEndOf="@+id/mainFragmentEditTextMessage"
-                android:text="Send"/>
-
+                android:layout_height="match_parent"
+                android:padding="@dimen/large_padding"
+                android:clickable="true"
+                android:focusable="true"
+                android:scaleType="centerInside"
+                android:adjustViewBounds="true"
+                android:tint="@color/colorDarkGray"
+                android:background="?android:selectableItemBackground"
+                android:contentDescription="@string/content_description_button_send"
+                android:src="@drawable/ic_send"/>
 
     </LinearLayout>
 
