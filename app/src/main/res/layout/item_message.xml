@@ -5,9 +5,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/regular_padding"
         android:layout_marginBottom="@dimen/regular_padding"
-        android:layout_marginEnd="@dimen/regular_padding"
         android:clickable="true"
         android:focusable="true"
         android:background="?android:selectableItemBackground">
@@ -18,32 +16,35 @@
             android:layout_height="wrap_content"
             app:contentPadding="@dimen/small_padding"
             app:cardBackgroundColor="@color/colorMessageBackground"
-            app:cardCornerRadius="4dp">
+            app:cardCornerRadius="@dimen/regular_padding">
 
-        <RelativeLayout
+        <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:minWidth="@dimen/message_min_width">
+                android:minWidth="100dp"
+                android:orientation="vertical">
 
             <TextView
                     android:id="@+id/messageText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/small_padding"
-                    tools:text="This is a message. Lorem ipsum dalat mi."/>
+                    android:paddingStart="@dimen/small_padding"
+                    android:paddingTop="@dimen/small_padding"
+                    android:paddingEnd="@dimen/small_padding"
+                    tools:text="Hi"/>
 
             <TextView
                     android:id="@+id/messageTimestamp"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/messageText"
-                    android:layout_alignEnd="@+id/messageText"
+                    android:layout_alignParentEnd="true"
                     android:gravity="end"
                     android:maxLines="1"
                     android:textColor="?android:textColorSecondary"
                     android:text="3:53pm"/>
 
-        </RelativeLayout>
+        </LinearLayout>
 
     </androidx.cardview.widget.CardView>
 

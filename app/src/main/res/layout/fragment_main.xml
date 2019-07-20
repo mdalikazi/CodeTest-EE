@@ -24,13 +24,19 @@
 
         <EditText
                 android:id="@+id/mainFragmentNumberEditText"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_toEndOf="@+id/mainFragmentLabelTo"
                 android:background="@color/colorTransparent"
                 android:gravity="center_vertical"
                 android:inputType="phone"
-                tools:text="0401553443"/>
+                android:hint="Enter phone number"/>
+
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_alignParentBottom="true"
+                android:background="@color/colorLightGray"/>
 
     </RelativeLayout>
 
@@ -39,9 +45,11 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
+            android:layout_marginStart="@dimen/regular_padding"
+            android:layout_marginEnd="@dimen/regular_padding"
+            android:layout_marginTop="@dimen/regular_padding"
             android:clipToPadding="true"
             android:orientation="vertical"
-            app:reverseLayout="true"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/item_message"/>
 
@@ -53,21 +61,26 @@
 
         <EditText
                 android:id="@+id/mainFragmentEditTextMessage"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:padding="@dimen/regular_padding"
                 android:background="@color/colorTransparent"
-                android:inputType="text"
+                android:inputType="textCapSentences"
                 android:hint="Please type your message"/>
 
-        <Button
+        <ImageButton
                 android:id="@+id/mainFragmentButtonSend"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toEndOf="@+id/mainFragmentEditTextMessage"
-                android:text="Send"/>
-
+                android:layout_height="match_parent"
+                android:padding="@dimen/large_padding"
+                android:clickable="true"
+                android:focusable="true"
+                android:scaleType="centerInside"
+                android:adjustViewBounds="true"
+                android:tint="@color/colorDarkGray"
+                android:background="?android:selectableItemBackground"
+                android:src="@drawable/ic_send"/>
 
     </LinearLayout>
 
