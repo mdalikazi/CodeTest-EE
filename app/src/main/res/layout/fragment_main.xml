@@ -21,7 +21,7 @@
                 android:paddingEnd="30dp"
                 android:gravity="center"
                 android:textStyle="bold"
-                android:text="To"/>
+                android:text="@string/main_fragment_to"/>
 
         <EditText
                 android:id="@+id/mainFragmentNumberEditText"
@@ -33,7 +33,7 @@
                 android:background="@color/colorTransparent"
                 android:gravity="center_vertical"
                 android:inputType="phone"
-                android:hint="Enter phone number"/>
+                android:hint="@string/main_fragment_hint_phone_number"/>
 
         <View
                 android:layout_width="match_parent"
@@ -70,7 +70,7 @@
                 android:padding="@dimen/regular_padding"
                 android:background="@color/colorTransparent"
                 android:inputType="textCapSentences"
-                android:hint="Type your message"/>
+                android:hint="@string/main_fragment_hint_type_message"/>
 
         <ImageButton
                 android:id="@+id/mainFragmentButtonSend"
@@ -83,6 +83,7 @@
                 android:adjustViewBounds="true"
                 android:tint="@color/colorDarkGray"
                 android:background="?android:selectableItemBackground"
+                android:contentDescription="@string/content_description_button_send"
                 android:src="@drawable/ic_send"/>
 
     </LinearLayout>

@@ -64,8 +64,11 @@ class MainFragment : Fragment() {
         if (mainFragmentNumberEditText.text.isBlank() &&
                 mainFragmentNumberEditText.text.isEmpty()) {
             mainFragmentNumberEditText.requestFocus()
-            mainFragmentNumberEditText.error = "This field is required!"
+            mainFragmentNumberEditText.error = getString(R.string.validation_number_error_empty)
             return false
+        } else if (mainFragmentNumberEditText.length() < 10) {
+            mainFragmentNumberEditText.requestFocus()
+            mainFragmentNumberEditText.error = getString(R.string.validation_number_error_less_than_10_chars)
         } else if (mainFragmentEditTextMessage.text.isBlank() &&
             mainFragmentEditTextMessage.text.isEmpty()) {
             return false

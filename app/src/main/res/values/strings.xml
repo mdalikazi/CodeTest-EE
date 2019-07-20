@@ -1,4 +1,13 @@
 <resources>
+
     <string name="app_name">CodeTest - EE</string>
     <string name="generic_network_error">There was a network error!</string>
+    <string name="main_fragment_to">To</string>
+    <string name="main_fragment_hint_phone_number">Enter phone number</string>
+    <string name="main_fragment_hint_type_message">Type your message</string>
+    <string name="validation_number_error_empty">This field is required!</string>
+    <string name="validation_number_error_less_than_10_chars">This phone number is invalid!</string>
+
+    <string name="content_description_button_send">Send</string>
+
 </resources>

@@ -38,12 +38,10 @@
                     android:id="@+id/messageTimestamp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/messageText"
-                    android:layout_alignParentEnd="true"
                     android:gravity="end"
                     android:maxLines="1"
                     android:textColor="?android:textColorSecondary"
-                    android:text="3:53pm"/>
+                    tools:text="3:53pm"/>
 
         </LinearLayout>
 
