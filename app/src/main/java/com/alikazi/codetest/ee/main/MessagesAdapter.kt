@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.alikazi.codetest.ee.R
 import com.alikazi.codetest.ee.utils.EEDateUtils
 
-class MessagesAdapter(private val context: Context?) : RecyclerView.Adapter<MessagesAdapter.MessageItemViewHolder>(){
+class MessagesAdapter(context: Context?) : RecyclerView.Adapter<MessagesAdapter.MessageItemViewHolder>(){
 
     companion object {
         const val VIEW_TYPE_SENT = 0
