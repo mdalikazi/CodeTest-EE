@@ -1,6 +1,8 @@
 package com.alikazi.codetest.ee.main
 
+import android.app.AlertDialog
 import android.os.Bundle
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -30,6 +32,7 @@ class MainFragment : Fragment() {
             if (it.text.isNotEmpty() && it.text.isNotBlank()) {
                 messagesAdapter.addReceievedMessage(it)
                 mainFragmentRecyclerView.smoothScrollToPosition(messagesAdapter.itemCount)
+                startFourSecondsCounter()
             }
         })
 
@@ -38,6 +41,8 @@ class MainFragment : Fragment() {
         })
         messagesAdapter = MessagesAdapter(activity)
     }
+
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_main, container, false)
@@ -75,6 +80,17 @@ class MainFragment : Fragment() {
         }
         mainFragmentNumberEditText.error = null
         return true
+    }
+
+    private fun startFourSecondsCounter() {
+        Handler().postDelayed({
+            AlertDialog.Builder(activity)
+                .setTitle(getString(R.string.main_fragment_inactive_alert_title))
+                .setMessage(getString(R.string.main_fragment_inactive_alert_message))
+                .setPositiveButton(getString(R.string.ok)) { dialog, _ -> dialog.dismiss() }
+                .create()
+                .show()
+        }, 4000)
     }
 
 }
