@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.alikazi.codetest.ee.R
+import com.alikazi.codetest.ee.utils.EEDateUtils
 
 class MessagesAdapter(private val context: Context?) : RecyclerView.Adapter<MessagesAdapter.MessageItemViewHolder>(){
 
@@ -40,12 +41,14 @@ class MessagesAdapter(private val context: Context?) : RecyclerView.Adapter<Mess
             VIEW_TYPE_SENT -> {
                 val sentMessage = messagesList[position] as MessageSent
                 holder.messageText.text = sentMessage.text
+                holder.messageTimestamp.text = EEDateUtils.formatDateToAmPm(sentMessage.timestamp)
                 alignMessageToRight(holder.messageContainer)
 
             }
             VIEW_TYPE_RECEIVED -> {
                 val receivedMessage = messagesList[position] as MessageReceived
                 holder.messageText.text = receivedMessage.text
+                holder.messageTimestamp.text = EEDateUtils.formatDateToAmPm(receivedMessage.timestamp)
             }
         }
     }

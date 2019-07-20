@@ -1,3 +1,8 @@
 package com.alikazi.codetest.ee.main
 
-data class MessageSent(var text: String)
+import java.util.*
+
+data class MessageSent(
+    var text: String,
+    var timestamp: Date = Date(System.currentTimeMillis())
+)
