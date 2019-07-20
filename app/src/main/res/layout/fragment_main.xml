@@ -21,7 +21,7 @@
                 android:paddingEnd="30dp"
                 android:gravity="center"
                 android:textStyle="bold"
-                android:text="@string/main_fragment_to"/>
+                android:text="@string/to"/>
 
         <EditText
                 android:id="@+id/mainFragmentNumberEditText"
