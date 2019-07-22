@@ -15,14 +15,13 @@ import com.alikazi.codetest.ee.helpers.TestHelpers
 import com.alikazi.codetest.ee.main.MainActivity
 import com.alikazi.codetest.ee.utils.Constants
 import com.alikazi.codetest.ee.utils.MockDataHelper
-import org.junit.After
-import org.junit.Before
-import org.junit.Rule
-import org.junit.Test
+import org.junit.*
 import org.junit.runner.RunWith
+import org.junit.runners.MethodSorters
 
 @RunWith(AndroidJUnit4::class)
 @LargeTest
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 class MainActivityTest {
 
     @get:Rule
@@ -54,7 +53,6 @@ class MainActivityTest {
         typeRandomMessage()
         closeSoftKeyboard()
         pressSend()
-
         onView(isRoot()).perform(TestHelpers.waitForSeconds(1))
         val recyclerView = mainActivityTestRule.activity.findViewById<RecyclerView>(R.id.mainFragmentRecyclerView)
         assert(recyclerView.adapter != null && recyclerView.adapter?.itemCount == 2)
@@ -80,8 +78,10 @@ class MainActivityTest {
     @Test
     fun checkFourSecondsInactivityAlertDialog() {
         checkResponse()
-        onView(isRoot()).perform(TestHelpers.waitForSeconds(Constants.INACTIVITY_COUNTDOWN_DELAY_SECONDS + 1))
-        onView(withText(getInactivtyDialogMessage())).check(matches(isDisplayed()))
+        onView(isRoot()).perform(TestHelpers.waitForSeconds(Constants.INACTIVITY_COUNTDOWN_DELAY_SECONDS + 2))
+        if (!mainActivityTestRule.activity.isFinishing) {
+            onView(withText(getInactivtyDialogMessage())).check(matches(isDisplayed()))
+        }
     }
 
     private fun typeValidPhoneNumber() {
