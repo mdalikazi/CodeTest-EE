@@ -2,13 +2,21 @@ package com.alikazi.codetest.ee.main
 
 import android.os.Bundle
 import android.util.Log
+import androidx.annotation.VisibleForTesting
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentTransaction
+import androidx.test.espresso.IdlingResource
 import com.alikazi.codetest.ee.R
 import com.alikazi.codetest.ee.utils.Constants
+import com.alikazi.codetest.ee.utils.IdlingResourcesHelper
 import com.alikazi.codetest.ee.utils.InactivityHelper
 
 class MainActivity : AppCompatActivity() {
+
+    @VisibleForTesting
+    fun getIdlingResource(): IdlingResource {
+        return IdlingResourcesHelper.getIdlingResource()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
