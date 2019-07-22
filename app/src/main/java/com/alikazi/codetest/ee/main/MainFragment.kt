@@ -9,7 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.alikazi.codetest.ee.R
 import com.alikazi.codetest.ee.utils.Constants
-import com.alikazi.codetest.ee.utils.InactivityHelper
+import com.alikazi.codetest.ee.utils.InactivityTimer
 import com.alikazi.codetest.ee.utils.Injector
 import com.alikazi.codetest.ee.viewmodels.MessageViewModel
 import com.alikazi.codetest.ee.viewmodels.RequestResponseModels
@@ -32,7 +32,7 @@ class MainFragment : Fragment() {
             if (it.text.isNotEmpty() && it.text.isNotBlank()) {
                 messagesAdapter.addReceievedMessage(it)
                 mainFragmentRecyclerView.smoothScrollToPosition(messagesAdapter.itemCount)
-                InactivityHelper.getInstance(activity).startFourSecondsCountdown()
+                InactivityTimer.getInstance(activity).startFourSecondsCountdown()
             }
         })
 

@@ -8,11 +8,12 @@ import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.action.ViewActions.typeText
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.intent.rule.IntentsTestRule
-import androidx.test.espresso.matcher.ViewMatchers.hasErrorText
-import androidx.test.espresso.matcher.ViewMatchers.withId
+import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.LargeTest
+import com.alikazi.codetest.ee.helpers.TestHelpers
 import com.alikazi.codetest.ee.main.MainActivity
+import com.alikazi.codetest.ee.utils.Constants
 import com.alikazi.codetest.ee.utils.MockDataHelper
 import org.junit.After
 import org.junit.Before
@@ -38,7 +39,7 @@ class MainActivityTest {
     }
 
     @Test
-    fun sendMessage() {
+    fun checkSendMessage() {
         typeValidPhoneNumber()
         onView(withId(R.id.mainFragmentEditTextMessage)).perform(typeText(MockDataHelper.generateRandomString()))
         onView(withId(R.id.mainFragmentButtonSend)).perform(click())
@@ -51,9 +52,10 @@ class MainActivityTest {
     fun checkResponse() {
         typeValidPhoneNumber()
         typeRandomMessage()
-        pressSend()
         closeSoftKeyboard()
-        waitForSeconds(1)
+        pressSend()
+
+        onView(isRoot()).perform(TestHelpers.waitForSeconds(1))
         val recyclerView = mainActivityTestRule.activity.findViewById<RecyclerView>(R.id.mainFragmentRecyclerView)
         assert(recyclerView.adapter != null && recyclerView.adapter?.itemCount == 2)
     }
@@ -61,6 +63,7 @@ class MainActivityTest {
     @Test
     fun checkValidation_invalidPhoneNumber_noMessage() {
         typeInvalidPhoneNumber()
+        closeSoftKeyboard()
         pressSend()
         onView(withId(R.id.mainFragmentNumberEditText)).check(matches(hasErrorText(getNumberInvalidError())))
     }
@@ -69,8 +72,16 @@ class MainActivityTest {
     fun checkValidation_invalidPhoneNumber_withMessage() {
         typeInvalidPhoneNumber()
         typeRandomMessage()
+        closeSoftKeyboard()
         pressSend()
         onView(withId(R.id.mainFragmentNumberEditText)).check(matches(hasErrorText(getNumberInvalidError())))
+    }
+
+    @Test
+    fun checkFourSecondsInactivityAlertDialog() {
+        checkResponse()
+        onView(isRoot()).perform(TestHelpers.waitForSeconds(Constants.INACTIVITY_COUNTDOWN_DELAY_SECONDS + 1))
+        onView(withText(getInactivtyDialogMessage())).check(matches(isDisplayed()))
     }
 
     private fun typeValidPhoneNumber() {
@@ -89,13 +100,11 @@ class MainActivityTest {
         onView(withId(R.id.mainFragmentButtonSend)).perform(click())
     }
 
-    private fun waitForSeconds(seconds: Int) {
-        mainActivityTestRule.activity.runOnUiThread {
-            Thread.sleep(seconds * 1000L)
-        }
-    }
-
     private fun getNumberInvalidError(): String {
         return mainActivityTestRule.activity.getString(R.string.validation_number_error_less_than_10_chars)
+    }
+
+    private fun getInactivtyDialogMessage(): String {
+        return mainActivityTestRule.activity.getString(R.string.main_fragment_inactive_alert_message)
     }
 }

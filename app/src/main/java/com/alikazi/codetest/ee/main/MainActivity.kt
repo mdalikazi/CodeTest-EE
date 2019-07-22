@@ -9,7 +9,7 @@ import androidx.test.espresso.IdlingResource
 import com.alikazi.codetest.ee.R
 import com.alikazi.codetest.ee.utils.Constants
 import com.alikazi.codetest.ee.utils.IdlingResourcesHelper
-import com.alikazi.codetest.ee.utils.InactivityHelper
+import com.alikazi.codetest.ee.utils.InactivityTimer
 
 class MainActivity : AppCompatActivity() {
 
@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
     override fun onUserInteraction() {
         super.onUserInteraction()
         Log.i(Constants.LOG_TAG, "onUserInteraction")
-        InactivityHelper.getInstance(this).stopCountdown()
+        InactivityTimer.getInstance(this).stopCountdown()
     }
 
 }

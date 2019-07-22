@@ -4,22 +4,23 @@ import android.app.AlertDialog
 import android.content.Context
 import android.os.Handler
 import com.alikazi.codetest.ee.R
+import java.util.concurrent.TimeUnit
 
-class InactivityHelper(private val context: Context?) : Runnable {
+class InactivityTimer(private val context: Context?) : Runnable {
 
     private val handler = Handler()
 
     companion object {
-        private var INSTANCE: InactivityHelper? = null
+        private var INSTANCE: InactivityTimer? = null
 
-        fun getInstance(context: Context?): InactivityHelper =
+        fun getInstance(context: Context?): InactivityTimer =
             INSTANCE ?: synchronized(this) {
-                INSTANCE ?: InactivityHelper(context)
+                INSTANCE ?: InactivityTimer(context)
             }.also { INSTANCE = it }
     }
 
     fun startFourSecondsCountdown() {
-        handler.postDelayed(this, Constants.INACTIVITY_COUNTDOWN_TIMER_DELAY)
+        handler.postDelayed(this, TimeUnit.SECONDS.toMillis(Constants.INACTIVITY_COUNTDOWN_DELAY_SECONDS))
     }
 
     fun stopCountdown() {
