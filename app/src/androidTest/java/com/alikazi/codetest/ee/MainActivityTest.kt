@@ -11,6 +11,7 @@ import androidx.test.espresso.intent.rule.IntentsTestRule
 import androidx.test.espresso.matcher.ViewMatchers.hasErrorText
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.test.filters.LargeTest
 import com.alikazi.codetest.ee.main.MainActivity
 import com.alikazi.codetest.ee.utils.MockDataHelper
 import org.junit.After
@@ -20,10 +21,11 @@ import org.junit.Test
 import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
+@LargeTest
 class MainActivityTest {
 
     @get:Rule
-    private val mainActivityTestRule = IntentsTestRule(MainActivity::class.java)
+    val mainActivityTestRule = IntentsTestRule(MainActivity::class.java)
 
     @Before
     fun registerIdlingResources() {
@@ -45,7 +47,7 @@ class MainActivityTest {
         assert(recyclerView.adapter != null && recyclerView.adapter?.itemCount == 1)
     }
 
-//    @Test
+    @Test
     fun checkResponse() {
         typeValidPhoneNumber()
         typeRandomMessage()
@@ -56,13 +58,14 @@ class MainActivityTest {
         assert(recyclerView.adapter != null && recyclerView.adapter?.itemCount == 2)
     }
 
-//    @Test
+    @Test
     fun checkValidation_invalidPhoneNumber_noMessage() {
         typeInvalidPhoneNumber()
         pressSend()
+        onView(withId(R.id.mainFragmentNumberEditText)).check(matches(hasErrorText(getNumberInvalidError())))
     }
 
-//    @Test
+    @Test
     fun checkValidation_invalidPhoneNumber_withMessage() {
         typeInvalidPhoneNumber()
         typeRandomMessage()
