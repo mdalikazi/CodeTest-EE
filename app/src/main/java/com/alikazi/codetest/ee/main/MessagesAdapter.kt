@@ -55,6 +55,7 @@ class MessagesAdapter(context: Context?) : RecyclerView.Adapter<MessagesAdapter.
     private fun alignMessageToRight(target: CardView) {
         val layoutParams = RelativeLayout.LayoutParams(target.layoutParams.width, target.layoutParams.height)
         layoutParams.addRule(RelativeLayout.ALIGN_PARENT_END)
+        layoutParams.setMargins(10,10,10,10) // We need this to render card's shadow
         target.layoutParams = layoutParams
     }
 

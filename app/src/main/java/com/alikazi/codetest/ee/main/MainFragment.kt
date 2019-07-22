@@ -23,6 +23,7 @@ class MainFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        retainInstance = true
 
         messageViewModel = ViewModelProviders
             .of(this, Injector.provideViewModelFactory())
@@ -35,7 +36,6 @@ class MainFragment : Fragment() {
                 InactivityTimer.getInstance(activity).startFourSecondsCountdown()
             }
         })
-
         messageViewModel?.networkErrors?.observe(this, Observer {
             Snackbar.make(mainFragmentContainer, R.string.generic_network_error, Snackbar.LENGTH_LONG).show()
         })
@@ -47,8 +47,8 @@ class MainFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        mainFragmentRecyclerView.adapter = messagesAdapter
         if (savedInstanceState == null) {
-            mainFragmentRecyclerView.adapter = messagesAdapter
             mainFragmentButtonSend.setOnClickListener {
                 if (validateTextFields()) {
                     val trimmedText = mainFragmentEditTextMessage.text.toString().trim()
